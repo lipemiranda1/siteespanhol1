@@ -1,0 +1,468 @@
+import React, { useState, useEffect } from 'react';
+import { Clock, CheckCircle, Star, ShieldCheck, Lock, ArrowRight, Menu, X, ChevronDown, BookOpen, AlertTriangle, Quote, Play } from 'lucide-react';
+
+const LandingPage = () => {
+  const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutos em segundos
+  const [faqOpen, setFaqOpen] = useState(null);
+
+  // Timer de Escassez
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 15 * 60));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  };
+
+  const toggleFaq = (index) => {
+    setFaqOpen(faqOpen === index ? null : index);
+  };
+
+  // Componente de Botão Pulsante (CTA)
+  const CTAButton = ({ text, subtext }) => (
+    <div className="w-full flex flex-col items-center group cursor-pointer transform hover:scale-105 transition-all duration-300">
+      <button className="bg-gradient-to-r from-green-600 via-green-500 to-green-600 text-white font-extrabold text-xl md:text-3xl py-4 px-8 rounded-full shadow-[0_0_20px_rgba(34,197,94,0.6)] border-b-4 border-green-800 w-full md:w-auto animate-pulse group-hover:animate-none flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+        {text} <ArrowRight className="w-6 h-6 md:w-8 md:h-8" />
+      </button>
+      {subtext && <p className="text-gray-500 text-sm mt-3 italic font-medium">{subtext}</p>}
+      <div className="flex items-center gap-2 mt-2 text-xs text-gray-400 uppercase tracking-widest">
+        <Lock className="w-3 h-3" /> Compra 100% Segura e Criptografada
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="font-sans text-gray-800 bg-gray-50 overflow-x-hidden">
+      
+      {/* Barra de Urgência Topo */}
+      <div className="bg-red-700 text-white text-center py-3 px-4 text-sm md:text-base font-bold sticky top-0 z-50 shadow-lg border-b border-red-800">
+        <div className="flex justify-center items-center gap-2 animate-pulse">
+          <Clock className="w-5 h-5" />
+          <span>¡ATENCIÓN! Esta oportunidad única desaparece en: <span className="bg-white text-red-700 px-2 py-0.5 rounded font-mono text-lg">{formatTime(timeLeft)}</span></span>
+        </div>
+      </div>
+
+      {/* Hero Section */}
+      <section className="bg-black text-white pt-10 pb-20 px-4 md:px-0 relative overflow-hidden">
+        {/* Efeito de brilho de fundo */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-yellow-500/10 to-transparent pointer-events-none"></div>
+        
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <div className="inline-block bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-extrabold px-6 py-2 rounded-full text-sm md:text-base mb-6 uppercase tracking-widest shadow-lg transform -rotate-1">
+            ⚠️ Revelado: El Secreto de la Prosperidad Bíblica
+          </div>
+          
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight drop-shadow-xl">
+            "Trabajas duro, oras con fe, pero <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400 decoration-red-500 underline decoration-4 underline-offset-4">el dinero huye de ti</span>..."
+          </h1>
+          
+          <p className="text-lg md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed">
+            Descubre el <span className="text-yellow-400 font-bold bg-yellow-400/10 px-2 rounded">Código Oculto del Rey Salomón</span> que activa la bendición financiera en tu vida en menos de 7 días.
+          </p>
+
+          {/* Video Real Incorporado */}
+          <div className="relative w-full max-w-3xl mx-auto aspect-video bg-black rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-4 border-yellow-600/50 mb-10 overflow-hidden">
+             <iframe 
+               width="100%" 
+               height="100%" 
+               src="https://www.youtube.com/embed/P_h51dmlr-k?autoplay=0&rel=0&controls=1&showinfo=0" 
+               title="Video de Vendas" 
+               frameBorder="0" 
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+               allowFullScreen
+               className="absolute inset-0 w-full h-full"
+             ></iframe>
+          </div>
+
+          <CTAButton text="SÍ, QUIERO ACTIVAR MI RIQUEZA AHORA" subtext="Acceso Inmediato • Garantía Total de 30 Días" />
+        </div>
+      </section>
+
+      {/* Versículos / Autoridade Bíblica */}
+      <section className="py-16 px-4 bg-white relative">
+        <div className="max-w-4xl mx-auto text-center">
+          <Quote className="w-12 h-12 text-yellow-500 mx-auto mb-6 opacity-50" />
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">
+            La Riqueza es una Promesa, <br/><span className="text-yellow-600">No una Casualidad</span>
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-yellow-50 p-8 rounded-2xl border border-yellow-200 shadow-sm hover:shadow-md transition-shadow">
+              <p className="text-xl font-serif text-gray-800 italic mb-4">
+                "La bendición de Jehová es la que enriquece, y no añade tristeza con ella."
+              </p>
+              <p className="font-bold text-yellow-700 tracking-wider">— PROVERBIOS 10:22</p>
+            </div>
+
+            <div className="bg-yellow-50 p-8 rounded-2xl border border-yellow-200 shadow-sm hover:shadow-md transition-shadow">
+              <p className="text-xl font-serif text-gray-800 italic mb-4">
+                "Sino acuérdate de Jehová tu Dios, porque él te da el poder para hacer las riquezas."
+              </p>
+              <p className="font-bold text-yellow-700 tracking-wider">— DEUTERONOMIO 8:18</p>
+            </div>
+          </div>
+          
+          <p className="mt-8 text-gray-600 max-w-2xl mx-auto">
+            Dios no quiere que vivas en la escasez. Si sientes que estás bloqueado, es porque te falta activar los principios que Salomón dejó escritos hace milenios.
+          </p>
+        </div>
+      </section>
+
+      {/* Problema / Agitação */}
+      <section className="py-14 px-4 bg-gray-100">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
+            ¿Por qué sigues luchando si te esfuerzas tanto?
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-xl border-l-4 border-red-500 shadow-sm hover:-translate-y-1 transition-transform">
+              <div className="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                <X className="w-6 h-6 text-red-600" />
+              </div>
+              <h3 className="font-bold text-lg mb-2">Bloqueo Invisible</h3>
+              <p className="text-sm text-gray-600">El dinero entra y sale como agua entre los dedos. Una "fuerza" invisible devora tus ahorros con gastos inesperados.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl border-l-4 border-red-500 shadow-sm hover:-translate-y-1 transition-transform">
+              <div className="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                <AlertTriangle className="w-6 h-6 text-red-600" />
+              </div>
+              <h3 className="font-bold text-lg mb-2">Cansancio del Alma</h3>
+              <p className="text-sm text-gray-600">Trabajas el doble que otros pero obtienes la mitad. Sientes que estás pagando una condena en lugar de vivir una vida.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl border-l-4 border-red-500 shadow-sm hover:-translate-y-1 transition-transform">
+              <div className="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                <Clock className="w-6 h-6 text-red-600" />
+              </div>
+              <h3 className="font-bold text-lg mb-2">Ansiedad por el Futuro</h3>
+              <p className="text-sm text-gray-600">El miedo a no tener suficiente para tu familia o tu vejez te roba la paz y el sueño todas las noches.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Como Funciona / Benefícios Expandidos */}
+      <section className="py-20 px-4 bg-gray-900 text-white relative overflow-hidden">
+        {/* Elemento decorativo */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20"></div>
+
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center gap-16">
+            <div className="md:w-1/2 relative">
+               {/* Imagem do Produto com efeito 3D mais forte */}
+               <div className="relative z-10 transform transition-transform duration-500 hover:scale-105">
+                 <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg blur-lg opacity-40 animate-pulse"></div>
+                 <div className="bg-gradient-to-br from-gray-800 to-black p-8 rounded-lg border-2 border-yellow-500/50 shadow-2xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent opacity-50"></div>
+                    <BookOpen className="w-20 h-20 text-yellow-500 mb-6 mx-auto" />
+                    <h3 className="text-2xl font-serif text-yellow-100 text-center mb-1">LOS SECRETOS DE</h3>
+                    <h2 className="text-5xl font-serif font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-600 text-center mb-4 drop-shadow-sm">SALOMÓN</h2>
+                    <p className="text-center text-gray-400 text-sm uppercase tracking-[0.2em] border-t border-gray-700 pt-4">Manual de Riqueza Bíblica</p>
+                 </div>
+               </div>
+            </div>
+            
+            <div className="md:w-1/2 space-y-8">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
+                  No es Magia. Es <span className="text-yellow-400">Sabiduría Divina Aplicada</span>.
+                </h2>
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  Este manual va a reprogramar tu mente y tu espíritu. Dejarás de perseguir el dinero y empezarás a atraerlo.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                {[
+                  {
+                    title: "Desbloqueo Inmediato",
+                    desc: "Aprende la oración exacta que rompe maldiciones financieras generacionales."
+                  },
+                  {
+                    title: "El Principio del 100x1",
+                    desc: "Cómo aplicar la ley de la siembra para que cada dólar vuelva multiplicado."
+                  },
+                  {
+                    title: "Paz Mental Total",
+                    desc: "Elimina la ansiedad por las deudas entendiendo tu verdadero propósito de provisión."
+                  }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-4">
+                    <div className="bg-green-600/20 p-2 rounded-lg h-fit">
+                      <CheckCircle className="w-6 h-6 text-green-400" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-xl text-white mb-1">{item.title}</h4>
+                      <p className="text-gray-400 text-sm">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-6">
+                <CTAButton text="QUIERO DESCUBRIR LOS CÓDIGOS" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* O que você vai aprender */}
+      <section className="py-16 px-4 bg-yellow-50 border-y border-yellow-200">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">
+            ¿Qué aprenderás en este curso?
+          </h2>
+          <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-yellow-100">
+            <ul className="space-y-6">
+              {[
+                "Sabiduría milenaria aplicada al dinero moderno.",
+                "Los 7 fundamentos de la verdadera prosperidad.",
+                "La riqueza comienza en la mente, no en el bolsillo.",
+                "Principios eternos, resultados prácticos.",
+                "Prosperidad con equilibrio y propósito."
+              ].map((item, idx) => (
+                <li key={idx} className="flex items-center gap-5 text-lg md:text-xl text-gray-700 font-semibold">
+                  <div className="bg-gradient-to-br from-yellow-300 to-yellow-500 p-2 rounded-full shadow-sm flex-shrink-0">
+                    <CheckCircle className="w-6 h-6 text-white" />
+                  </div>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Prova Social Turbinada */}
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Ellos aplicaron los códigos y <span className="bg-yellow-100 px-2">su vida cambió</span>
+            </h2>
+            <p className="text-gray-600">Personas reales. Resultados reales. Bendiciones reales.</p>
+          </div>
+
+          {/* Prints de Conversa (Simulados - WhatsApp) */}
+          <div className="flex flex-col md:flex-row justify-center items-center gap-8 mb-16">
+             {/* Print 1 */}
+             <div className="bg-[#e5ddd5] p-5 rounded-2xl shadow-xl w-full md:w-[350px] border border-gray-300 transform -rotate-2 hover:rotate-0 transition-transform">
+                <div className="flex justify-center mb-4"><span className="bg-[#d1dbeb] text-xs px-3 py-1 rounded-lg text-gray-700 font-medium">Hoy</span></div>
+                <div className="bg-white p-4 rounded-xl rounded-tl-none text-sm text-gray-800 shadow-sm relative mb-4 w-[90%] leading-relaxed">
+                   ¡Hola! Solo quería agradecerles infinitamente. Apliqué el principio de la mente que enseñan en el curso y acabo de cerrar mi primera venta grande en meses. 😭🙏
+                   <span className="text-[10px] text-gray-400 block text-right mt-2">10:42 AM</span>
+                </div>
+                <div className="bg-[#dcf8c6] p-4 rounded-xl rounded-tr-none text-sm text-gray-800 shadow-sm relative self-end ml-auto w-[85%] leading-relaxed">
+                   ¡Qué gran noticia! Nos alegra muchísimo. ¡Sigue aplicando los códigos! ✨
+                   <span className="text-[10px] text-gray-500 block text-right mt-2 flex items-center justify-end gap-1">10:45 AM <span className="text-blue-500 text-[14px] font-bold">✓✓</span></span>
+                </div>
+             </div>
+
+             {/* Print 2 */}
+             <div className="bg-[#e5ddd5] p-5 rounded-2xl shadow-xl w-full md:w-[350px] border border-gray-300 transform rotate-2 hover:rotate-0 transition-transform">
+                <div className="flex justify-center mb-4"><span className="bg-[#d1dbeb] text-xs px-3 py-1 rounded-lg text-gray-700 font-medium">Ayer</span></div>
+                <div className="bg-white p-4 rounded-xl rounded-tl-none text-sm text-gray-800 shadow-sm relative mb-4 w-[95%] leading-relaxed">
+                   Es increíble. Mi esposo y yo estábamos muy endeudados y estudiar esto nos dio paz y una dirección clara. Ayer por fin logramos pagar la tarjeta que nos ahogaba. Mil gracias en serio.
+                   <span className="text-[10px] text-gray-400 block text-right mt-2">18:20 PM</span>
+                </div>
+             </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {/* Depoimento 1 */}
+            <div className="bg-gray-50 p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all">
+               <div className="flex items-center justify-between mb-4">
+                  <div className="flex text-yellow-400">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
+                  </div>
+                  <span className="text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full flex items-center gap-1">
+                    <CheckCircle className="w-3 h-3" /> Verificado
+                  </span>
+               </div>
+              <p className="text-gray-700 text-lg mb-6 italic leading-relaxed">
+                "Estaba a punto de perder mi casa. Lloraba todas las noches. Cuando leí sobre el 'Pilar de la Mayordomía', entendí lo que hacía mal. En 3 semanas, no solo pagué mis atrasos, sino que recibí un aumento inesperado. ¡Dios es fiel!"
+              </p>
+              <div className="flex items-center gap-4 border-t border-gray-200 pt-4">
+                <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">MR</div>
+                <div>
+                  <h4 className="font-bold text-gray-900">María Rodriguez</h4>
+                  <p className="text-sm text-gray-500">Ama de Casa - 42 años</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Depoimento 2 */}
+            <div className="bg-gray-50 p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all">
+               <div className="flex items-center justify-between mb-4">
+                  <div className="flex text-yellow-400">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
+                  </div>
+                  <span className="text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full flex items-center gap-1">
+                    <CheckCircle className="w-3 h-3" /> Verificado
+                  </span>
+               </div>
+              <p className="text-gray-700 text-lg mb-6 italic leading-relaxed">
+                "Siempre creí que ser rico era malo. Este libro me abrió los ojos con la Biblia. Mi pequeño negocio de comida se ha multiplicado. Hoy doy empleo a 3 personas más. Es increíble."
+              </p>
+              <div className="flex items-center gap-4 border-t border-gray-200 pt-4">
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">JC</div>
+                <div>
+                  <h4 className="font-bold text-gray-900">Juan Carlos Méndez</h4>
+                  <p className="text-sm text-gray-500">Emprendedor - 35 años</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Depoimento 3 */}
+            <div className="bg-gray-50 p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all">
+               <div className="flex items-center justify-between mb-4">
+                  <div className="flex text-yellow-400">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
+                  </div>
+                  <span className="text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full flex items-center gap-1">
+                    <CheckCircle className="w-3 h-3" /> Verificado
+                  </span>
+               </div>
+              <p className="text-gray-700 text-lg mb-6 italic leading-relaxed">
+                "Llevaba años estancado en el mismo salario. Apliqué el código de la 'Sabiduría' antes de una reunión importante y logré cerrar el contrato más grande de mi carrera. Esto funciona."
+              </p>
+              <div className="flex items-center gap-4 border-t border-gray-200 pt-4">
+                <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-white font-bold text-lg">AL</div>
+                <div>
+                  <h4 className="font-bold text-gray-900">Andrés Lopez</h4>
+                  <p className="text-sm text-gray-500">Vendedor - 29 años</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Depoimento 4 */}
+            <div className="bg-gray-50 p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all">
+               <div className="flex items-center justify-between mb-4">
+                  <div className="flex text-yellow-400">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
+                  </div>
+                  <span className="text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full flex items-center gap-1">
+                    <CheckCircle className="w-3 h-3" /> Verificado
+                  </span>
+               </div>
+              <p className="text-gray-700 text-lg mb-6 italic leading-relaxed">
+                "Tenía deudas de tarjetas de crédito que me quitaban el sueño. La guía 'Anti-Deudas' que viene de regalo fue mi salvación. En 2 meses he pagado el 60% de lo que debía."
+              </p>
+              <div className="flex items-center gap-4 border-t border-gray-200 pt-4">
+                <div className="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white font-bold text-lg">SF</div>
+                <div>
+                  <h4 className="font-bold text-gray-900">Sofía Fernandez</h4>
+                  <p className="text-sm text-gray-500">Enfermera - 38 años</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Oferta Irresistível */}
+      <section className="py-16 px-4 bg-gradient-to-b from-gray-50 to-gray-200">
+        <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border-2 border-yellow-500 transform hover:scale-[1.01] transition-transform">
+          <div className="bg-gray-900 p-8 text-center text-white relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30"></div>
+            <h3 className="text-3xl font-extrabold uppercase tracking-wide mb-2 relative z-10">Oportunidad Única</h3>
+            <p className="text-yellow-400 font-bold text-lg animate-pulse relative z-10">🔥 Últimos accesos disponibles hoy</p>
+          </div>
+          
+          <div className="p-8 md:p-12">
+            <div className="flex flex-col gap-6 mb-10">
+              <div className="flex justify-between items-center border-b border-gray-100 pb-4">
+                <span className="text-gray-700 font-medium text-lg flex items-center gap-2">
+                  <BookOpen className="w-5 h-5 text-gray-400" /> Curso: Los Códigos de Salomón
+                </span>
+                <span className="text-gray-400 font-semibold line-through decoration-red-500">$47.00</span>
+              </div>
+              
+              <div className="flex justify-between items-center pt-2 text-xl bg-gray-50 p-4 rounded-lg">
+                <span className="font-bold text-gray-600">Valor Regular:</span>
+                <span className="font-bold text-red-500 line-through text-2xl">$47.00</span>
+              </div>
+            </div>
+            
+            <div className="text-center mb-10">
+              <p className="text-gray-600 font-medium mb-2 uppercase tracking-wide">Solo por hoy, llévatelo por:</p>
+              <div className="text-7xl font-extrabold text-green-600 mb-2 tracking-tighter shadow-green-200 drop-shadow-sm">$6.97</div>
+              <p className="text-sm text-gray-400 font-semibold">PAGO ÚNICO • ACCESO DE POR VIDA</p>
+            </div>
+
+            <CTAButton text="ACCEDER AL CURSO AHORA" />
+            
+            <div className="mt-8 flex justify-center items-center gap-6 grayscale opacity-60">
+               {/* Ícones de pagamento simulados */}
+               <div className="h-8 w-12 bg-gray-200 rounded border border-gray-300"></div>
+               <div className="h-8 w-12 bg-gray-200 rounded border border-gray-300"></div>
+               <div className="h-8 w-12 bg-gray-200 rounded border border-gray-300"></div>
+            </div>
+          </div>
+          
+          {/* Garantia */}
+          <div className="bg-gray-100 p-8 flex flex-col md:flex-row items-center gap-6 border-t border-gray-200">
+            <div className="bg-white p-4 rounded-full shadow-md">
+                <ShieldCheck className="w-12 h-12 text-green-600" />
+            </div>
+            <div className="text-center md:text-left">
+              <h4 className="font-bold text-gray-900 text-xl mb-1">Garantía Incondicional de 30 Días</h4>
+              <p className="text-gray-600 leading-snug">
+                Pruébalo sin riesgo. Si no sientes que tu mente y tus finanzas cambian, envíanos un email y te devolvemos <span className="font-bold text-gray-900">el 100% de tu dinero</span>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-16 px-4 bg-white max-w-3xl mx-auto">
+        <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">Preguntas Frecuentes</h2>
+        <div className="space-y-4">
+          {[
+            { q: "¿Cómo recibo el acceso?", a: "Es automático. En cuanto se confirme tu pago de $6.97, recibirás un correo electrónico con el acceso inmediato al curso." },
+            { q: "¿Sirve para mí si no soy muy religioso?", a: "Absolutamente. Aunque los principios provienen de la Biblia (la fuente de sabiduría más antigua), son leyes universales prácticas que funcionan para cualquier persona, independientemente de su nivel de fe." },
+            { q: "¿Es seguro pagar con tarjeta?", a: "Sí, 100% seguro. Usamos la misma tecnología de encriptación que los bancos grandes. Tus datos están protegidos y no tenemos acceso a ellos." },
+            { q: "¿Y si no me gusta?", a: "No te preocupes. Tienes 30 días de garantía. Si no te gusta, te devolvemos tu dinero. El riesgo es todo nuestro." }
+          ].map((item, idx) => (
+            <div key={idx} className="border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <button 
+                onClick={() => toggleFaq(idx)}
+                className="w-full flex justify-between items-center p-5 bg-white font-bold text-gray-800 text-left hover:bg-gray-50 transition-colors text-lg"
+              >
+                {item.q}
+                <ChevronDown className={`w-6 h-6 text-yellow-500 transition-transform duration-300 ${faqOpen === idx ? 'rotate-180' : ''}`} />
+              </button>
+              {faqOpen === idx && (
+                <div className="p-5 bg-gray-50 text-gray-600 border-t border-gray-100 leading-relaxed">
+                  {item.a}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-400 py-10 px-4 text-center border-t border-gray-800">
+        <div className="max-w-4xl mx-auto">
+            <p className="mb-6 text-sm leading-relaxed">
+                Este sitio no es parte del sitio web de Facebook o Facebook Inc. Además, este sitio no está respaldado por Facebook de ninguna manera. FACEBOOK es una marca registrada de FACEBOOK, Inc.
+            </p>
+            <p className="font-semibold text-white mb-4">&copy; 2024 Sabiduría Milenaria. Todos los derechos reservados.</p>
+            <div className="flex justify-center gap-6 text-sm">
+            <a href="#" className="hover:text-yellow-500 transition-colors underline">Políticas de Privacidad</a>
+            <a href="#" className="hover:text-yellow-500 transition-colors underline">Términos de Uso</a>
+            </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default LandingPage;

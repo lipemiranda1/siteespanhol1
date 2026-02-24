@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jornada de Prosperidad - Diagnóstico Profesional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .progress-fill {
+            transition: width 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .option-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .option-card:hover {
+            border-color: #fbbf24;
+            background: rgba(251, 191, 36, 0.05);
+            transform: scale(1.01);
+        }
+        .input-field {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #fbbf24;
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 flex flex-col items-center">
+
+    <div id="quiz-app" class="max-w-xl w-full">
+        <!-- Header de Progreso y Recompensa -->
+        <div id="header-stats" class="hidden mb-6 w-full">
+            <div class="flex justify-between items-center mb-3">
+                <span class="text-xs font-bold uppercase tracking-widest text-slate-500">Nivel de Sabiduría</span>
+                <span id="progress-pct" class="text-amber-500 font-bold font-mono text-sm">0%</span>
+            </div>
+            <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden mb-6">
+                <div id="progress-bar" class="progress-fill h-full bg-amber-500" style="width: 0%"></div>
+            </div>
+            
+            <div class="glass-panel p-4 flex items-center justify-between border-amber-500/20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-xl">💎</div>
+                    <div>
+                        <p class="text-[10px] uppercase font-bold text-slate-500">Bono Acumulado</p>
+                        <p id="reward-val" class="text-xl font-bold text-white tracking-tight">$0.00</p>
+                    </div>
+                </div>
+                <div class="text-xs font-bold text-amber-500 bg-amber-500/10 px-3 py-1 rounded-full animate-pulse">
+                    ACTIVO
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido -->
+        <div id="main-content">
+            
+            <!-- Introducción -->
+            <div id="step-intro" class="glass-panel p-8 md:p-12 text-center">
+                <div class="w-20 h-20 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="text-4xl">🔱</span>
+                </div>
+                <h1 class="text-3xl font-extrabold mb-4 leading-tight">Activa las <span class="gold-gradient">Leyes de la Prosperidad</span></h1>
+                <p class="text-slate-400 mb-10 leading-relaxed text-lg">Descubre tu diagnóstico financiero basado en principios milenarios y desbloquea beneficios exclusivos para tu transformación.</p>
+                
+                <div class="space-y-4 mb-8 text-left max-w-sm mx-auto">
+                    <div class="flex items-center gap-3 text-sm text-slate-300">
+                        <span class="text-amber-500">✔</span> Diagnóstico personalizado
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-300">
+                        <span class="text-amber-500">✔</span> Cupón de descuento de $40.00
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-300">
+                        <span class="text-amber-500">✔</span> 3 Bónus Secretos de acceso inmediato
+                    </div>
+                </div>
+
+                <button onclick="initQuiz()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-5 rounded-2xl shadow-xl shadow-amber-500/20 transition-all active:scale-95 text-lg uppercase tracking-tighter">
+                    Iniciar Evaluación Gratuita
+                </button>
+            </div>
+
+            <!-- Quiz -->
+            <div id="step-quiz" class="hidden glass-panel p-8 md:p-10">
+                <h2 id="q-text" class="text-xl font-bold mb-10 leading-snug text-center italic text-white/90">...</h2>
+                <div id="q-options" class="space-y-4"></div>
+            </div>
+
+            <!-- Captura de Email -->
+            <div id="step-email" class="hidden glass-panel p-8 md:p-10 text-center">
+                <span class="text-4xl mb-4 block">📧</span>
+                <h2 class="text-2xl font-bold mb-4">¡Casi listo!</h2>
+                <p class="text-slate-400 mb-8">Ingresa tu mejor correo electrónico para vincular tu diagnóstico y liberar tu bono de $40.00.</p>
+                
+                <input type="email" id="user-email" placeholder="tu@email.com" class="input-field w-full p-4 rounded-xl mb-6 text-center text-lg">
+                
+                <button id="submit-btn" onclick="sendToWebhook()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 rounded-xl transition-all disabled:opacity-50">
+                    VER MI DIAGNÓSTICO →
+                </button>
+                <p id="error-msg" class="text-red-400 text-sm mt-4 hidden">Por favor, ingresa un email válido.</p>
+            </div>
+
+            <!-- Diagnóstico Final -->
+            <div id="step-final" class="hidden glass-panel p-8 md:p-10">
+                <div class="text-center mb-8">
+                    <span class="text-5xl">📜</span>
+                    <h2 class="text-2xl font-bold mt-4">Tu Veredicto Financiero</h2>
+                </div>
+                
+                <div id="diag-box" class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 text-slate-300 leading-relaxed"></div>
+
+                <!-- Descuento y Botón -->
+                <div class="bg-gradient-to-br from-amber-600 to-amber-400 p-8 rounded-3xl text-slate-900 text-center shadow-2xl mb-8 relative overflow-hidden">
+                    <p class="text-xs font-black uppercase tracking-widest mb-1 opacity-80">Cupón de Descuento Desbloqueado:</p>
+                    <p id="total-promo" class="text-6xl font-black mb-6 tracking-tighter">$40.00 OFF</p>
+                    
+                    <a href="https://mentoriatabernaculo.com/pv" class="block w-full bg-slate-900 text-white font-bold py-5 rounded-2xl hover:bg-black transition-all transform hover:-translate-y-1 shadow-xl">
+                        TOMAR MI LUGAR EN EL TABERNÁCULO →
+                    </a>
+                </div>
+
+                <!-- Bonus Secretos -->
+                <div class="space-y-4">
+                    <h4 class="text-center text-amber-500 font-bold uppercase text-xs tracking-widest mb-6">🎁 Has ganado 3 Bónus Secretos</h4>
+                    <div class="glass-panel p-4 flex items-center gap-4 border-white/10 text-sm">⚡ Guía de Oración por las Finanzas</div>
+                    <div class="glass-panel p-4 flex items-center gap-4 border-white/10 text-sm">🔐 Acceso al Grupo de Alerta VIP</div>
+                    <div class="glass-panel p-4 flex items-center gap-4 border-white/10 text-sm">🎓 Clase Especial: 'Blindaje Mental'</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Toast de Recompensa -->
+    <div id="toast" class="fixed bottom-10 right-4 hidden bg-green-500 text-white px-6 py-4 rounded-2xl shadow-2xl z-50 animate-bounce">
+        <p class="font-bold">+$5.00 Ganados</p>
+    </div>
+
+    <script>
+        // --- CONFIGURACIÓN ---
+        // Pega aquí la URL de tu Webhook (Zapier, Make ou Apps Script)
+        const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbytCSNdRMHA65XF8mzOd7s1CMTrtToff2TqaKoOLDqlLHwW119BXbbTekfArn9S08sLug/exec";
+
+        const questions = [
+            { text: "¿Cómo gestionas actualmente la semilla (dinero) que llega a tus manos?", options: ["Consumo inmediato", "Ahorro sin propósito", "Inversión sabia"], p: 1 },
+            { text: "Proverbios 10:22 dice: 'La bendición de Jehová es la que enriquece'. ¿Tu riqueza viene con dolor?", options: ["Sí, es una lucha constante", "A veces", "No, fluye con paz"], p: 2 },
+            { text: "¿Cuál de estos personajes representa tu momento actual?", options: ["Siervo con miedo", "Multiplicador inicial", "Multiplicador fiel"], p: 3 },
+            { text: "Deuteronomio 8:18: ¿Sientes que usas el poder para hacer riquezas?", options: ["No lo conocía", "Me faltan herramientas", "Sí, lo ejerzo"], p: 4 },
+            { text: "¿Cuánto tiempo vivirías con tus ahorros hoy?", options: ["-30 días", "3-6 meses", "+1 año"], p: 5 },
+            { text: "¿Prioridad de educación financiera en tu agenda?", options: ["Ninguna", "Baja", "Alta"], p: 6 },
+            { text: "¿Estás decidido a aplicar un método probado?", options: ["Tengo dudas", "Sí, quiero ser buen administrador", "¡Amén! Estoy listo"], p: 7 }
+        ];
+
+        let currentIdx = 0;
+        let score = 0;
+        let accumulated = 0;
+        let userAnswers = {};
+
+        function initQuiz() {
+            document.getElementById('step-intro').classList.add('hidden');
+            document.getElementById('step-quiz').classList.remove('hidden');
+            document.getElementById('header-stats').classList.remove('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const q = questions[currentIdx];
+            document.getElementById('q-text').textContent = q.text;
+            const container = document.getElementById('q-options');
+            container.innerHTML = '';
+
+            q.options.forEach((opt, i) => {
+                const b = document.createElement('button');
+                b.className = "option-card w-full text-left p-6 rounded-2xl flex items-center gap-4 group bg-white/5";
+                b.innerHTML = `<div class="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center font-bold group-hover:bg-amber-500 group-hover:text-slate-900 transition-all">${String.fromCharCode(65+i)}</div><span>${opt}</span>`;
+                b.onclick = () => selectOption(opt, q.p);
+                container.appendChild(b);
+            });
+            updateProgress();
+        }
+
+        function selectOption(answerText, pts) {
+            userAnswers[`pregunta_${currentIdx + 1}`] = answerText;
+            score += pts;
+            accumulated += 5;
+            showToast();
+            document.getElementById('reward-val').textContent = `$${accumulated.toFixed(2)}`;
+
+            if (currentIdx < questions.length - 1) {
+                currentIdx++;
+                renderQuestion();
+            } else {
+                showEmailStep();
+            }
+        }
+
+        function updateProgress() {
+            const pct = Math.round((currentIdx / questions.length) * 100);
+            document.getElementById('progress-bar').style.width = pct + '%';
+            document.getElementById('progress-pct').textContent = pct + '%';
+        }
+
+        function showToast() {
+            const t = document.getElementById('toast');
+            t.classList.remove('hidden');
+            setTimeout(() => t.classList.add('hidden'), 1500);
+        }
+
+        function showEmailStep() {
+            document.getElementById('step-quiz').classList.add('hidden');
+            document.getElementById('step-email').classList.remove('hidden');
+        }
+
+        async function sendToWebhook() {
+            const email = document.getElementById('user-email').value;
+            const errorMsg = document.getElementById('error-msg');
+            const btn = document.getElementById('submit-btn');
+
+            if (!email.includes('@') || email.length < 5) {
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+
+            errorMsg.classList.add('hidden');
+            btn.disabled = true;
+            btn.textContent = "PROCESANDO...";
+
+            const payload = {
+                email: email,
+                score: score,
+                descuento: "$40.00",
+                ...userAnswers,
+                fecha: new Date().toLocaleString()
+            };
+
+            try {
+                // Envío al webhook
+                if (WEBHOOK_URL !== "SUA_URL_DO_WEBHOOK_AQUI") {
+                    await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        mode: 'no-cors', // Evita problemas de CORS en webhooks simples
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                }
+                finish();
+            } catch (e) {
+                console.error("Error al enviar datos", e);
+                finish(); // Finaliza incluso con error para no bloquear al usuario
+            }
+        }
+
+        function finish() {
+            document.getElementById('step-email').classList.add('hidden');
+            document.getElementById('header-stats').classList.add('hidden');
+            document.getElementById('step-final').classList.remove('hidden');
+
+            const box = document.getElementById('diag-box');
+            let diag = "";
+
+            if (score <= 11) {
+                diag = `<h3 class="text-amber-500 font-bold mb-2">SEQUÍA FINANCIERA</h3><p>Estás en un ciclo de escasez severa. Necesitas activar el método del Tabernáculo inmediatamente.</p>`;
+            } else if (score <= 18) {
+                diag = `<h3 class="text-amber-500 font-bold mb-2">TIERRA DE PROMISION</h3><p>Tienes fe, pero te falta estrategia. Estás a las puertas de tu cosecha.</p>`;
+            } else {
+                diag = `<h3 class="text-amber-500 font-bold mb-2">MAYORDOMO FIEL</h3><p>Estás listo para secretos avanzados de multiplicación exponencial.</p>`;
+            }
+            box.innerHTML = diag;
+        }
+    </script>
+</body>
+</html>
