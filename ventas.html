@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Secretos de Salomón | Los 7 Pilares de la Riqueza</title>
+<meta name="description" content="La guía práctica de 21 días para ordenar tus finanzas con la sabiduría del rey Salomón.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<!-- Preço, ofertas, pixel e depoimentos ficam em config.js (mude só lá).
+     Aqui disparamos só PageView + ViewContent. InitiateCheckout e Purchase vêm
+     da integração nativa do pixel dentro da Hotmart. -->
+<script src="config.js"></script>
+<script>
+(function(S){
+  var qs = new URLSearchParams(location.search);
+  S.unlocked = S.isUnlocked(qs);           // veio do quiz (ou já fez o quiz neste aparelho)
+  S.current  = S.tier(S.unlocked);
+})(window.SALOMON);
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', SALOMON.PIXEL_ID);
+fbq('track','PageView');
+fbq('track','ViewContent',{content_name:'Los Secretos de Salomon',value:SALOMON.current.price,currency:'USD'});
+</script>
+
+<style>
+:root{
+  --ink:#1b1408; --night:#0f0b05; --gold:#d4a537; --gold-2:#f3d27a; --gold-deep:#9c7417;
+  --parch:#fbf5e6; --parch-2:#f3e8cc; --text:#2a2418; --muted:#6b604a; --red:#b3261e; --green:#1f7a3f;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--parch);line-height:1.6;font-size:17px;overflow-x:hidden}
+img{max-width:100%;display:block}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px}
+h1,h2,h3{font-family:Cinzel,Georgia,serif;line-height:1.2;color:var(--ink)}
+h2{font-size:clamp(1.6rem,5vw,2.3rem);text-align:center;margin-bottom:18px}
+.eyebrow{display:block;text-align:center;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:800;margin-bottom:8px}
+section{padding:64px 0}
+.gold{color:var(--gold)}
+.u{background:linear-gradient(transparent 60%,rgba(212,165,55,.45) 60%)}
+
+/* Top bar */
+.topbar{background:var(--night);color:var(--gold-2);text-align:center;font-size:.85rem;padding:9px 12px;font-weight:600}
+
+/* CTA */
+.cta{display:block;width:100%;max-width:520px;margin:28px auto 10px;text-align:center;text-decoration:none;
+  background:linear-gradient(180deg,#2fb35d,#1f7a3f);color:#fff;font-weight:800;font-size:1.15rem;letter-spacing:.02em;
+  padding:20px 22px;border-radius:14px;box-shadow:0 10px 0 #145a2c,0 18px 30px rgba(0,0,0,.25);transition:transform .1s;animation:pulse 2.4s infinite}
+.cta small{display:block;font-weight:600;font-size:.8rem;opacity:.9;margin-top:3px}
+.cta:active{transform:translateY(4px);box-shadow:0 6px 0 #145a2c}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+.trust{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;font-size:.82rem;color:var(--muted);margin-top:8px}
+
+/* Hero */
+.hero{background:radial-gradient(ellipse at top,#3a2a0c 0%,var(--night) 65%);color:#f5ecd6;padding:46px 0 70px;text-align:center;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-40% -20% auto;height:120%;background:conic-gradient(from 180deg at 50% 0%,transparent 0 40%,rgba(243,210,122,.12) 45% 55%,transparent 60%);pointer-events:none}
+.badge{display:inline-block;border:1px solid var(--gold);color:var(--gold-2);padding:6px 14px;border-radius:99px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px}
+.hero h1{color:#fff;font-size:clamp(1.9rem,6.4vw,3.1rem);margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--gold-2)}
+.hero p.sub{font-size:1.1rem;color:#e4d7b8;max-width:600px;margin:0 auto}
+.hero .trust{color:#bfb091}
+
+/* Book mockup (CSS) – troque por imagem real do produto quando tiver */
+.book{width:210px;height:290px;margin:34px auto 6px;position:relative;transform:perspective(900px) rotateY(-18deg);
+  border-radius:4px 10px 10px 4px;background:linear-gradient(135deg,#2b1d06,#5a3c0b 45%,#2b1d06);
+  box-shadow:inset 6px 0 10px rgba(0,0,0,.5),20px 24px 40px rgba(0,0,0,.6),0 0 60px rgba(243,210,122,.25);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;border:2px solid var(--gold-deep)}
+.book:after{content:"";position:absolute;inset:10px;border:1px solid rgba(243,210,122,.6);border-radius:3px 7px 7px 3px}
+.book .crown{font-size:2.2rem}
+.book b{font-family:Cinzel,serif;color:var(--gold-2);font-size:1.25rem;line-height:1.15;margin-top:8px}
+.book span{font-size:.7rem;letter-spacing:.2em;color:#e9d49b;margin-top:10px;text-transform:uppercase}
+
+/* Pain */
+.pain ul{list-style:none;display:grid;gap:12px;margin-top:22px}
+.pain li{background:#fff;border-left:4px solid var(--red);padding:14px 16px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.center{text-align:center}
+.lead{font-size:1.12rem;text-align:center;max-width:640px;margin:0 auto}
+
+/* Story */
+.story{background:var(--parch-2)}
+.story p{margin-bottom:16px}
+.verse{font-family:Cinzel,serif;font-size:1.2rem;text-align:center;color:var(--gold-deep);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:18px 6px;margin:26px 0}
+
+/* Pillars */
+.pillars{background:var(--night);color:#efe4c8}
+.pillars h2{color:#fff}
+.grid{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+.pillar{background:linear-gradient(180deg,#1f170a,#140f06);border:1px solid #4b3812;border-radius:var(--radius);padding:18px}
+.pillar .n{font-family:Cinzel,serif;color:var(--gold);font-size:1.6rem;font-weight:800}
+.pillar h3{color:var(--gold-2);font-size:1.05rem;margin:4px 0 6px}
+.pillar p{font-size:.95rem;color:#cfc3a5}
+
+/* Before / after */
+.ba{display:grid;gap:14px;grid-template-columns:1fr;margin-top:20px}
+@media(min-width:640px){.ba{grid-template-columns:1fr 1fr}}
+.ba div{border-radius:var(--radius);padding:20px;background:#fff}
+.ba .before{border-top:5px solid var(--red)}
+.ba .after{border-top:5px solid var(--green)}
+.ba h3{font-size:1.05rem;margin-bottom:10px}
+.ba li{margin:0 0 8px 20px}
+
+/* Steps */
+.steps{display:grid;gap:14px;margin-top:22px}
+.step{display:flex;gap:14px;align-items:flex-start;background:#fff;padding:18px;border-radius:var(--radius)}
+.step .k{flex:0 0 46px;height:46px;border-radius:50%;background:var(--gold);color:var(--night);display:grid;place-items:center;font-weight:800;font-family:Cinzel,serif}
+
+/* Offer stack */
+.offer{background:linear-gradient(180deg,var(--parch-2),var(--parch))}
+.box{background:#fff;border:2px dashed var(--gold);border-radius:20px;padding:24px 18px;box-shadow:0 18px 40px rgba(60,40,0,.12)}
+.item{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #eee3c7}
+.item:last-of-type{border:0}
+.item b{display:block}
+.item small{color:var(--muted)}
+.item .v{white-space:nowrap;color:var(--muted);text-decoration:line-through}
+.tag{display:inline-block;background:var(--gold);color:var(--night);font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:6px;margin-right:6px;vertical-align:middle}
+.price{text-align:center;margin-top:20px}
+.price .from{color:var(--muted)}
+.price .from s{color:var(--red)}
+.price .now{font-size:3.2rem;font-weight:800;color:var(--green);line-height:1;margin:6px 0}
+.price .note{font-size:.85rem;color:var(--muted)}
+
+/* Testimonials */
+.testi{display:grid;gap:14px;margin-top:20px}
+@media(min-width:640px){.testi{grid-template-columns:1fr 1fr}}
+.t{background:#fff;padding:18px;border-radius:var(--radius);box-shadow:0 2px 8px rgba(0,0,0,.05);margin:0}
+.t img{border-radius:10px;margin-bottom:10px;width:100%}
+.t blockquote{margin:0}
+.t figcaption{font-weight:700;margin-top:8px;font-size:.92rem;color:var(--gold-deep)}
+.price .unlock{display:inline-block;background:var(--green);color:#fff;font-size:.78rem;font-weight:800;letter-spacing:.04em;padding:4px 10px;border-radius:99px;margin-bottom:6px}
+
+/* Guarantee */
+.guar{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+.seal{width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,var(--gold-2),var(--gold) 60%,var(--gold-deep));display:grid;place-items:center;color:var(--night);font-family:Cinzel,serif;font-weight:800;box-shadow:0 0 0 6px #fff,0 0 0 8px var(--gold)}
+.seal b{font-size:2.4rem;line-height:1}
+.seal span{font-size:.7rem;letter-spacing:.1em}
+
+/* For whom */
+.who-grid{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.who-grid{grid-template-columns:1fr 1fr}}
+.who-grid div{background:#fff;border-radius:var(--radius);padding:20px}
+.who-grid li{list-style:none;margin-bottom:8px}
+
+/* FAQ */
+details{background:#fff;border-radius:12px;margin-bottom:10px;padding:16px 18px;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+summary{font-weight:700;cursor:pointer;list-style:none;position:relative;padding-right:24px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";position:absolute;right:0;top:-2px;font-size:1.4rem;color:var(--gold-deep)}
+details[open] summary:after{content:"–"}
+details p{margin-top:10px;color:var(--muted)}
+
+.final{background:var(--night);color:#efe4c8;text-align:center}
+.final h2{color:#fff}
+footer{background:#000;color:#8b8068;font-size:.75rem;text-align:center;padding:26px 18px 90px}
+
+/* Sticky mobile CTA */
+.sticky{position:fixed;left:0;right:0;bottom:0;background:rgba(15,11,5,.96);padding:10px 14px;display:flex;align-items:center;gap:12px;z-index:50;transform:translateY(110%);transition:transform .3s}
+.sticky.show{transform:none}
+.sticky .p{color:#fff;font-weight:800;line-height:1.1;font-size:1.05rem}
+.sticky .p s{color:#a99a78;font-weight:400;font-size:.8rem;display:block}
+.sticky a{flex:1;text-align:center;background:#2fb35d;color:#fff;font-weight:800;text-decoration:none;padding:14px;border-radius:10px}
+@media(min-width:900px){.sticky{display:none}}
+@media (prefers-reduced-motion:reduce){.cta{animation:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">✨ Precio especial de lanzamiento para Latinoamérica · Acceso inmediato</div>
+
+<!-- 1. HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">👑 La sabiduría del hombre más rico de la historia</span>
+    <h1>Trabajas, oras y das lo mejor de ti…<br><em>¿por qué el dinero nunca alcanza?</em></h1>
+    <p class="sub">Descubre los <b class="gold">7 Pilares de la Riqueza</b> que el rey Salomón dejó escritos en Proverbios y Eclesiastés, convertidos en un <b>plan práctico de 21 días</b> para ordenar tus finanzas, salir del ciclo de la escasez y administrar con paz lo que Dios pone en tus manos.</p>
+
+    <div class="book" aria-hidden="true">
+      <div class="crown">👑</div>
+      <b>Los Secretos de Salomón</b>
+      <span>Los 7 Pilares de la Riqueza</span>
+    </div>
+
+    <a class="cta" href="#oferta">QUIERO CONOCER LOS 7 PILARES<small>Guía digital · Acceso inmediato en tu celular</small></a>
+    <div class="trust"><span>🔒 Compra 100% segura</span><span>📱 Lee en el celular</span><span>🛡️ Garantía de 7 días</span></div>
+  </div>
+</header>
+
+<!-- 2. DOR / IDENTIFICAÇÃO -->
+<section class="pain">
+  <div class="wrap">
+    <span class="eyebrow">¿Te suena familiar?</span>
+    <h2>Si te identificas con al menos una de estas frases, esta guía es para ti</h2>
+    <ul>
+      <li>😔 El salario llega y en pocos días ya no queda nada.</li>
+      <li>💳 Las deudas se acumulan y sientes que trabajas solo para pagarlas.</li>
+      <li>🙏 Oras por tus finanzas, pero no sabes qué hacer en la práctica.</li>
+      <li>😟 Te da ansiedad pensar en una emergencia, porque no tienes ahorros.</li>
+      <li>🏠 Sueñas con darle una vida mejor a tu familia, pero no sabes por dónde empezar.</li>
+    </ul>
+    <p class="lead" style="margin-top:26px">No es falta de fe ni de esfuerzo. <b class="u">Es falta de un método.</b> Y ese método ya fue escrito hace 3.000 años.</p>
+  </div>
+</section>
+
+<!-- 3. HISTÓRIA / REVELAÇÃO -->
+<section class="story">
+  <div class="wrap">
+    <span class="eyebrow">La historia que pocos conocen</span>
+    <h2>El rey que pidió sabiduría… y recibió riqueza</h2>
+    <p>Cuando Dios le dijo a Salomón <i>"pide lo que quieras"</i>, él no pidió oro. Pidió <b>sabiduría para administrar</b>. Y la Biblia cuenta que se convirtió en el rey más próspero de su época.</p>
+    <p>Lo que casi nadie te contó es que Salomón <b>dejó por escrito</b> cómo pensaba sobre el dinero: el trabajo, el ahorro, las deudas, la generosidad y la multiplicación. Está en Proverbios y Eclesiastés, pero disperso en cientos de versículos.</p>
+    <div class="verse">"Bienes, riquezas y honra te daré."<br><small>— 2 Crónicas 1:12</small></div>
+    <p><b>Los Secretos de Salomón</b> reúne esos principios en <b>7 pilares claros</b> y los traduce en acciones simples que puedes aplicar desde hoy, aunque ganes poco, aunque tengas deudas y aunque nunca hayas aprendido nada de finanzas.</p>
+  </div>
+</section>
+
+<!-- 4. O QUE É O PRODUTO: 7 PILARES -->
+<section class="pillars">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--gold)">Qué vas a aprender</span>
+    <h2>Los 7 Pilares de la Riqueza según Salomón</h2>
+    <div class="grid">
+      <div class="pillar"><div class="n">I</div><h3>El Pilar de la Sabiduría</h3><p>Por qué la prosperidad empieza en la mente, y cómo cambiar la forma en que ves el dinero.</p></div>
+      <div class="pillar"><div class="n">II</div><h3>El Pilar de la Diligencia</h3><p>Lo que Proverbios enseña sobre el trabajo que multiplica, y el que solo cansa.</p></div>
+      <div class="pillar"><div class="n">III</div><h3>El Pilar del Granero</h3><p>El método de José y Salomón para ahorrar aunque hoy sientas que no te sobra nada.</p></div>
+      <div class="pillar"><div class="n">IV</div><h3>El Pilar de la Libertad</h3><p>"El que toma prestado es siervo del que presta": un plan paso a paso para salir de las deudas.</p></div>
+      <div class="pillar"><div class="n">V</div><h3>El Pilar de la Generosidad</h3><p>Diezmo, ofrenda y siembra: cómo dar con propósito sin desordenar tu economía.</p></div>
+      <div class="pillar"><div class="n">VI</div><h3>El Pilar de la Multiplicación</h3><p>La parábola de los talentos aplicada: cómo hacer crecer lo poco que tienes.</p></div>
+      <div class="pillar" style="grid-column:1/-1"><div class="n">VII</div><h3>El Pilar del Legado</h3><p>Cómo construir estabilidad para tu familia y dejar herencia a los hijos de tus hijos (Proverbios 13:22).</p></div>
+    </div>
+    <a class="cta" href="#oferta">QUIERO LOS 7 PILARES AHORA<small>Acceso inmediato · <span class="js-price">US$ 9,90</span></small></a>
+  </div>
+</section>
+
+<!-- 5. TRANSFORMAÇÃO -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Tu transformación</span>
+    <h2>Dónde estás hoy y adónde puedes llegar en 21 días</h2>
+    <div class="ba">
+      <div class="before"><h3>❌ Antes</h3><ul><li>No sabes adónde se va tu dinero</li><li>Deudas sin plan para pagarlas</li><li>Cero ahorro, miedo a imprevistos</li><li>Oras, pero sin dirección práctica</li><li>Discusiones en casa por dinero</li></ul></div>
+      <div class="after"><h3>✅ Después</h3><ul><li>Un presupuesto simple que sí funciona</li><li>Un plan claro para salir de las deudas</li><li>Tu primer "granero" de reserva</li><li>Fe y acción caminando juntas</li><li>Paz y unidad en las finanzas de tu hogar</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. COMO FUNCIONA -->
+<section style="background:var(--parch-2)">
+  <div class="wrap">
+    <span class="eyebrow">Cómo funciona</span>
+    <h2>Simple, práctico y desde tu celular</h2>
+    <div class="steps">
+      <div class="step"><div class="k">1</div><div><b>Recibes el acceso al instante</b><br>Apenas se confirme el pago, te llega un correo con el acceso a la guía.</div></div>
+      <div class="step"><div class="k">2</div><div><b>Lees un pilar por día</b><br>Lecturas cortas de 10 minutos, con el versículo, la enseñanza y una acción práctica.</div></div>
+      <div class="step"><div class="k">3</div><div><b>Aplicas el plan de 21 días</b><br>Una tarea concreta por día para ordenar, ahorrar y empezar a multiplicar.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. DEPOIMENTOS — preenchidos por config.js (TESTIMONIOS). Lista vazia = seção escondida. -->
+<section id="depo" hidden>
+  <div class="wrap">
+    <span class="eyebrow">Lo que dicen nuestros lectores</span>
+    <h2>Historias reales</h2>
+    <div class="testi" id="testiList"></div>
+  </div>
+</section>
+
+<!-- 8. OFERTA -->
+<section class="offer" id="oferta">
+  <div class="wrap">
+    <span class="eyebrow">Todo lo que recibes hoy</span>
+    <h2>Tu acceso completo</h2>
+    <div class="box">
+      <div class="item"><div><b>📖 Los Secretos de Salomón</b><small>Guía principal: los 7 Pilares de la Riqueza</small></div><span class="v">US$ 27</span></div>
+      <div class="item"><div><b>🗓️ Plan de 21 Días del Granero</b><small>Una acción práctica por día</small></div><span class="v">US$ 12</span></div>
+      <div class="item"><div><span class="tag">BONO 1</span><b>📜 30 Versículos de Provisión</b><small>Fondos para el celular, uno para cada día del mes</small></div><span class="v">US$ 9</span></div>
+      <div class="item"><div><span class="tag">BONO 2</span><b>📊 Planilla "Mayordomo Fiel"</b><small>Presupuesto familiar simple para el celular</small></div><span class="v">US$ 9</span></div>
+      <div class="item"><div><span class="tag">BONO 3</span><b>🧠 Clase "Blindaje Mental"</b><small>Cómo vencer la mentalidad de escasez</small></div><span class="v">US$ 10</span></div>
+
+      <div class="price">
+        <div class="unlock" id="unlockBadge" hidden>🔓 PRECIO DESBLOQUEADO EN TU DIAGNÓSTICO</div>
+        <div class="from">Valor total: <s class="js-anchor">US$ 67</s></div>
+        <div class="from" id="regularLine" hidden>Precio regular: <s class="js-regular">US$ 14,90</s></div>
+        <div class="now js-price">US$ 9,90</div>
+        <div class="note">Pago único · Se convierte automáticamente a tu moneda local<br>Tarjeta, PayPal y medios de pago locales de tu país</div>
+      </div>
+      <a class="cta js-checkout" href="#">SÍ, QUIERO MI ACCESO AHORA<small>Acceso inmediato por correo electrónico</small></a>
+      <div class="trust"><span>🔒 Pago seguro por Hotmart</span><span>🛡️ 7 días de garantía</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. GARANTIA -->
+<section>
+  <div class="wrap guar">
+    <div class="seal"><div><b>7</b><span>DÍAS DE<br>GARANTÍA</span></div></div>
+    <h2>Riesgo cero para ti</h2>
+    <p class="lead">Lee la guía, aplica los primeros pilares y, si en 7 días sientes que no es para ti, pides el reembolso con un solo correo y te devolvemos el 100% de tu dinero. Sin preguntas. La garantía la respalda Hotmart.</p>
+  </div>
+</section>
+
+<!-- 10. PARA QUEM É -->
+<section style="background:var(--parch-2)">
+  <div class="wrap">
+    <h2>¿Es para ti?</h2>
+    <div class="who-grid">
+      <div><h3 style="margin-bottom:10px">✅ Es para ti si…</h3><ul><li>✔ Crees que Dios quiere verte prosperar con propósito</li><li>✔ Quieres salir de las deudas y empezar a ahorrar</li><li>✔ Buscas un método práctico, no solo motivación</li><li>✔ Puedes dedicar 10 minutos al día</li></ul></div>
+      <div><h3 style="margin-bottom:10px">❌ No es para ti si…</h3><ul><li>✖ Buscas dinero fácil o "milagros" sin acción</li><li>✖ No estás dispuesto a cambiar hábitos</li><li>✖ Quieres un curso de inversiones en bolsa</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. FAQ -->
+<section>
+  <div class="wrap">
+    <h2>Preguntas frecuentes</h2>
+    <details><summary>¿Cómo recibo el material?</summary><p>Apenas se apruebe tu pago, recibes un correo de Hotmart con tu acceso. Puedes leerlo en el celular, la tableta o la computadora.</p></details>
+    <details><summary>¿Puedo pagar desde mi país?</summary><p>Sí. El pago se muestra en tu moneda local y acepta tarjeta, PayPal y, según el país, medios de pago en efectivo o transferencia.</p></details>
+    <details><summary>¿Es un pago único o una suscripción?</summary><p>Es un pago único de <span class="js-price">US$ 9,90</span> (convertido a tu moneda). No hay cobros mensuales.</p></details>
+    <details><summary>¿Necesito saber de finanzas?</summary><p>No. Está escrito en un lenguaje sencillo, para cualquier persona, sin importar cuánto gane hoy.</p></details>
+    <details><summary>¿Es de alguna denominación específica?</summary><p>No. Se basa directamente en las Escrituras y sirve para cristianos de cualquier iglesia.</p></details>
+    <details><summary>¿Y si no me gusta?</summary><p>Tienes 7 días de garantía incondicional. Pides el reembolso y te devolvemos el 100%.</p></details>
+  </div>
+</section>
+
+<!-- 12. CTA FINAL -->
+<section class="final">
+  <div class="wrap">
+    <h2>Salomón pidió sabiduría. Hoy tú puedes tenerla en tus manos.</h2>
+    <p class="lead" style="color:#d9cba8">Dentro de 21 días puedes seguir igual que hoy… o puedes tener un plan, una reserva y paz en tus finanzas.</p>
+    <a class="cta js-checkout" href="#">QUIERO EMPEZAR HOY POR <span class="js-price">US$ 9,90</span><small>Acceso inmediato · Garantía de 7 días</small></a>
+  </div>
+</section>
+
+<footer>
+  © Los Secretos de Salomón. Todos los derechos reservados.<br>
+  Este producto es educativo y no garantiza resultados financieros específicos. Los resultados dependen de la aplicación de cada persona.<br>
+  Este sitio no forma parte de Facebook ni de Meta Platforms, Inc.
+</footer>
+
+<div class="sticky" id="sticky">
+  <div class="p"><s class="js-anchor">US$ 67</s><span class="js-price">US$ 9,90</span></div>
+  <a class="js-checkout" href="#">QUIERO MI ACCESO</a>
+</div>
+
+<script>
+(function(S){
+  var qs = new URLSearchParams(location.search);
+  // vem do quiz: mostra o pilar do diagnóstico no topo
+  var PIL = {'1':'I · La Sabiduría','3':'III · El Granero','4':'IV · La Libertad','6':'VI · La Multiplicación','7':'VII · El Legado'};
+  if (PIL[qs.get('pilar')]) document.getElementById('topbar').textContent = '📜 Tu diagnóstico: Pilar ' + PIL[qs.get('pilar')] + '. Tu precio desbloqueado ya está aplicado 👇';
+
+  document.querySelectorAll('.js-price').forEach(function(el){ el.textContent = S.fmt(S.current.price); });
+  document.querySelectorAll('.js-anchor').forEach(function(el){ el.textContent = 'US$ ' + S.ANCHOR; });
+  document.querySelectorAll('.js-regular').forEach(function(el){ el.textContent = S.fmt(S.REGULAR.price); });
+  if (S.unlocked) { document.getElementById('unlockBadge').hidden = false; document.getElementById('regularLine').hidden = false; }
+
+  var href = S.checkoutUrl({ qs: qs, unlocked: S.unlocked, email: qs.get('email'), variant: qs.get('v') });
+  document.querySelectorAll('.js-checkout').forEach(function(a){ a.href = href; });
+
+  S.renderTestimonios(document.getElementById('testiList'), document.getElementById('depo'));
+
+  var sticky = document.getElementById('sticky');
+  var hero = document.querySelector('.hero');
+  addEventListener('scroll', function(){ sticky.classList.toggle('show', scrollY > hero.offsetHeight); }, {passive:true});
+})(window.SALOMON);
+</script>
+</body>
+</html>

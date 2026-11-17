@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Qué pilar de Salomón bloquea tu dinero? | Diagnóstico gratuito</title>
+<meta name="description" content="Responde 5 preguntas, descubre cuál de los 7 Pilares de la Riqueza de Salomón te falta activar y desbloquea tu precio especial.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<!-- Preço, ofertas, pixel, webhook e depoimentos: config.js
+     Eventos: PageView, QuizStart, QuizStep, Unlock, Lead (e-mail), QuizComplete, ViewContent (oferta). -->
+<script src="config.js"></script>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', SALOMON.PIXEL_ID);
+fbq('track','PageView');
+</script>
+
+<style>
+:root{
+  --night:#0f0b05; --gold:#d4a537; --gold-2:#f3d27a; --gold-deep:#9c7417;
+  --parch:#fbf5e6; --text:#f5ecd6; --muted:#bfb091; --card:#1c150a; --line:#3d2f12;
+  --green:#2fb35d; --green-d:#145a2c; --red:#b3261e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:radial-gradient(ellipse at top,#3a2a0c 0%,var(--night) 60%) fixed;color:var(--text);line-height:1.55;font-size:17px}
+.app{max-width:560px;margin:0 auto;padding:14px 18px 40px;min-height:100vh;display:flex;flex-direction:column}
+h1,h2{font-family:Cinzel,Georgia,serif;line-height:1.2;color:#fff;text-wrap:balance}
+h1{font-size:clamp(1.7rem,6.5vw,2.3rem)}
+h2{font-size:clamp(1.3rem,5.4vw,1.65rem);margin-bottom:18px}
+.gold{color:var(--gold-2)}
+
+/* topo: progresso + tesouro */
+.top{display:flex;align-items:center;gap:12px;min-height:24px}
+.brand{font-family:Cinzel,serif;font-size:.8rem;letter-spacing:.14em;color:var(--gold-2);white-space:nowrap}
+.bar{flex:1;height:6px;background:#2a210e;border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold-deep),var(--gold-2));transition:width .4s}
+.treasure{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0 20px;padding:10px 14px;border:1px solid var(--gold-deep);border-radius:12px;background:rgba(28,21,10,.85)}
+.treasure .lbl{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:800}
+.treasure .val{font-weight:800;font-size:1.15rem;color:#fff;font-variant-numeric:tabular-nums}
+.treasure .val s{color:var(--muted);font-weight:600;font-size:.85rem;margin-right:6px}
+.treasure .gifts{display:flex;gap:4px;font-size:1.15rem}
+.treasure .gifts span{opacity:.25;filter:grayscale(1);transition:opacity .3s,filter .3s,transform .3s}
+.treasure .gifts span.on{opacity:1;filter:none;transform:scale(1.15)}
+.bump{animation:bump .5s ease}
+@keyframes bump{40%{transform:scale(1.12);color:var(--gold-2)}}
+.hide{visibility:hidden}
+
+.screen{display:none;flex-direction:column;flex:1;animation:in .35s ease}
+.screen.on{display:flex}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.eyebrow{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:12px}
+.lead{color:var(--muted);margin:14px 0 22px}
+.crown{font-size:3rem;text-align:center;margin:8px 0 14px}
+.perks{list-style:none;display:grid;gap:8px;margin:0 0 24px}
+.perks li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:.95rem}
+
+.opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--card);border:1.5px solid var(--line);color:var(--text);
+  font:600 1rem Inter,sans-serif;padding:16px;border-radius:14px;cursor:pointer;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--gold-deep)}
+.opt.sel{border-color:var(--gold);background:#2b200b}
+.opt .e{font-size:1.4rem;flex:0 0 auto}
+.opt:focus-visible,.btn:focus-visible,input:focus-visible,.skip:focus-visible,.link:focus-visible{outline:3px solid var(--gold-2);outline-offset:2px}
+
+.reveal{background:linear-gradient(180deg,#22190a,#160f05);border:1px solid var(--gold-deep);border-radius:16px;padding:22px 20px;margin-bottom:16px}
+.reveal .verse{font-family:Cinzel,serif;color:var(--gold-2);font-size:1.12rem;line-height:1.4;margin:12px 0 6px}
+.reveal .ref{font-size:.82rem;color:var(--gold);letter-spacing:.06em}
+.reveal p{color:#e4d7b8;margin-top:12px}
+.gift{display:flex;gap:12px;align-items:center;background:#173a22;border:1px solid var(--green);border-radius:14px;padding:12px 14px;margin-bottom:18px;animation:bump .6s ease}
+.gift .ic{font-size:1.8rem}
+.gift b{display:block;color:#bff0cf;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
+.gift span{color:#fff;font-weight:600}
+
+.btn{display:block;width:100%;text-align:center;text-decoration:none;border:0;cursor:pointer;
+  background:linear-gradient(180deg,var(--green),#1f7a3f);color:#fff;font:800 1.1rem Inter,sans-serif;letter-spacing:.02em;
+  padding:19px 20px;border-radius:14px;box-shadow:0 8px 0 var(--green-d),0 16px 28px rgba(0,0,0,.35);margin-top:auto}
+.btn:active{transform:translateY(4px);box-shadow:0 4px 0 var(--green-d)}
+.btn small{display:block;font-size:.78rem;font-weight:600;opacity:.9;margin-top:3px}
+.btn.gold{background:linear-gradient(180deg,var(--gold-2),var(--gold));color:var(--night);box-shadow:0 8px 0 var(--gold-deep),0 16px 28px rgba(0,0,0,.35)}
+.pulse{animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+.note{font-size:.8rem;color:var(--muted);text-align:center;margin-top:14px}
+
+input[type=email]{width:100%;padding:17px 16px;border-radius:12px;border:1.5px solid var(--line);background:#120d05;color:#fff;font:1rem Inter,sans-serif;margin-bottom:8px}
+.err{color:#ff8a7a;font-size:.85rem;min-height:1.2em;margin-bottom:14px}
+.skip,.link{display:block;margin:16px auto 0;background:none;border:0;color:var(--muted);text-decoration:underline;font:.9rem Inter,sans-serif;cursor:pointer;text-align:center}
+
+.load{display:grid;gap:14px;margin-top:10px}
+.load div{display:flex;gap:10px;align-items:center;color:var(--muted);opacity:.35;transition:opacity .3s}
+.load div.ok{opacity:1;color:var(--text)}
+.load b{width:22px;height:22px;border-radius:50%;border:2px solid var(--gold-deep);display:grid;place-items:center;font-size:.75rem;flex:0 0 auto}
+.load div.ok b{background:var(--gold);color:var(--night);border-color:var(--gold)}
+
+/* resultado */
+.card-p{background:var(--parch);color:#2a2418;border-radius:18px;padding:22px 20px;margin-bottom:18px}
+.card-p .tag{display:inline-block;background:var(--red);color:#fff;font-size:.72rem;font-weight:800;letter-spacing:.08em;padding:4px 9px;border-radius:6px;margin-bottom:10px}
+.card-p h2{color:#1b1408;margin-bottom:8px}
+.card-p p{margin-bottom:10px}
+.meter{margin:14px 0 4px}
+.meter .lbl{display:flex;justify-content:space-between;font-size:.85rem;font-weight:700}
+.meter .track{height:12px;background:#eadfc4;border-radius:99px;overflow:hidden;margin-top:6px}
+.meter .fill{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold));transition:width 1.2s ease}
+.plan{list-style:none;display:grid;gap:8px;margin:6px 0 22px}
+.plan li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:.95rem}
+.plan li b{color:var(--gold-2)}
+
+.offer{background:#fff;color:#2a2418;border:2px dashed var(--gold);border-radius:18px;padding:20px 18px;margin-bottom:18px}
+.offer h3{font-family:Cinzel,serif;font-size:1.15rem;text-align:center;margin-bottom:12px;color:#1b1408}
+.offer .it{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #eee3c7;font-size:.93rem}
+.offer .it:last-of-type{border:0}
+.offer .it s{color:#8a7f66;white-space:nowrap}
+.offer .it .new{color:var(--green);font-weight:800;font-size:.75rem;white-space:nowrap}
+.offer .price{text-align:center;margin:14px 0 4px}
+.offer .price .was{color:#6b604a}
+.offer .price .was s{color:var(--red)}
+.offer .price .now{font-size:2.8rem;font-weight:800;color:#1f7a3f;line-height:1.05}
+.offer .price small{display:block;color:#6b604a;font-size:.82rem}
+.offer .btn{margin-top:14px}
+.trust{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;font-size:.8rem;color:#6b604a;margin-top:12px}
+.testi{display:grid;gap:10px;margin-bottom:18px}
+.t{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:0}
+.t img{width:100%;border-radius:10px;margin-bottom:8px}
+.t blockquote{margin:0;font-size:.95rem}
+.t figcaption{color:var(--gold-2);font-weight:700;font-size:.85rem;margin-top:6px}
+.guar{display:flex;gap:12px;align-items:center;font-size:.9rem;color:#e4d7b8;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:6px}
+.guar b{font-family:Cinzel,serif;font-size:1.6rem;color:var(--gold-2)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top"><span class="brand">👑 SALOMÓN</span><div class="bar hide" id="bar"><i></i></div></div>
+  <div class="treasure hide" id="treasure" aria-live="polite">
+    <div><div class="lbl">Tu precio</div><div class="val" id="tVal"></div></div>
+    <div><div class="lbl" style="text-align:right">Bonos</div><div class="gifts"><span id="g1">📜</span><span id="g2">📊</span><span id="g3">🧠</span></div></div>
+  </div>
+
+  <!-- CAPA -->
+  <section class="screen on" data-s="intro">
+    <div class="crown">📜</div>
+    <span class="eyebrow">Diagnóstico gratuito · 1 minuto</span>
+    <h1>¿Qué <span class="gold">pilar de Salomón</span> está bloqueando tu dinero?</h1>
+    <p class="lead">La Biblia tiene más de 2.000 versículos sobre el dinero, y casi nadie los conoce. Responde 5 preguntas y descubre cuál de los <b>7 Pilares de la Riqueza</b> te falta activar.</p>
+    <ul class="perks">
+      <li>🔍 Tu diagnóstico personal, gratis</li>
+      <li>🔓 Cada respuesta baja el precio del plan completo</li>
+      <li>🎁 Desbloquea 3 bonos en el camino</li>
+    </ul>
+    <button class="btn pulse" data-go="q1" data-ev="QuizStart">EMPEZAR MI DIAGNÓSTICO<small>Gratis · Sin registro</small></button>
+    <p class="note">🔒 Tus respuestas son privadas</p>
+  </section>
+
+  <!-- 1 -->
+  <section class="screen" data-s="q1">
+    <span class="eyebrow">Pregunta 1 de 5</span>
+    <h2>Cuando llega tu salario, ¿cuánto te dura?</h2>
+    <div class="opts" data-q="salario">
+      <button class="opt" data-v="semana" data-pts="5"><span class="e">💸</span>Menos de una semana</button>
+      <button class="opt" data-v="mitad" data-pts="15"><span class="e">📉</span>Hasta la mitad del mes</button>
+      <button class="opt" data-v="justo" data-pts="30"><span class="e">😮‍💨</span>Llego justo a fin de mes</button>
+      <button class="opt" data-v="sobra" data-pts="45"><span class="e">🌱</span>Me sobra un poco</button>
+    </div>
+  </section>
+
+  <section class="screen" data-s="r1" data-gift="1">
+    <div class="gift"><span class="ic">📜</span><div><b>Bono 1 desbloqueado</b><span>30 Versículos de Provisión</span></div></div>
+    <div class="reveal">
+      <span class="eyebrow">Lo que Salomón escribió</span>
+      <div class="verse">"Tesoro precioso y aceite hay en la casa del sabio; mas el hombre insensato todo lo disipa."</div>
+      <div class="ref">PROVERBIOS 21:20</div>
+      <p>El problema casi nunca es <b>cuánto</b> entra. Es que nadie nos enseñó a <b>guardar</b> una parte antes de que se vaya. Salomón lo dejó escrito hace 3.000 años.</p>
+    </div>
+    <button class="btn gold" data-go="q2">CONTINUAR →</button>
+  </section>
+
+  <!-- 2 -->
+  <section class="screen" data-s="q2">
+    <span class="eyebrow">Pregunta 2 de 5</span>
+    <h2>¿Has orado por tus finanzas y sientes que nada cambia?</h2>
+    <div class="opts" data-q="oracion">
+      <button class="opt" data-v="muchas" data-pts="0"><span class="e">🙏</span>Sí, muchas veces</button>
+      <button class="opt" data-v="aveces" data-pts="5"><span class="e">🤲</span>A veces</button>
+      <button class="opt" data-v="nunca" data-pts="10"><span class="e">🤔</span>Nunca lo había pensado así</button>
+    </div>
+  </section>
+
+  <section class="screen" data-s="r2" data-gift="2">
+    <div class="gift"><span class="ic">📊</span><div><b>Bono 2 desbloqueado</b><span>Planilla "Mayordomo Fiel"</span></div></div>
+    <div class="reveal">
+      <span class="eyebrow">No es falta de fe</span>
+      <div class="verse">"Así también la fe, si no tiene obras, es muerta en sí misma."</div>
+      <div class="ref">SANTIAGO 2:17</div>
+      <p>Muchas veces Dios responde la oración por dinero de una forma que no esperamos: <b>dándonos sabiduría para actuar</b>. Fíjate en lo que pasó con Salomón…</p>
+    </div>
+    <button class="btn gold" data-go="q3">CONTINUAR →</button>
+  </section>
+
+  <!-- 3 -->
+  <section class="screen" data-s="q3">
+    <span class="eyebrow">Pregunta 3 de 5</span>
+    <h2>Si Dios te dijera hoy <span class="gold">"pide lo que quieras"</span>, ¿qué pedirías?</h2>
+    <div class="opts" data-q="pedido">
+      <button class="opt" data-v="deudas" data-pts="0"><span class="e">💳</span>Dinero para pagar mis deudas</button>
+      <button class="opt" data-v="milagro" data-pts="0"><span class="e">✨</span>Un milagro financiero</button>
+      <button class="opt" data-v="familia" data-pts="5"><span class="e">🏠</span>Estabilidad para mi familia</button>
+      <button class="opt" data-v="sabiduria" data-pts="10"><span class="e">📖</span>Sabiduría para administrar</button>
+    </div>
+  </section>
+
+  <section class="screen" data-s="r3" data-gift="3">
+    <div class="gift"><span class="ic">🧠</span><div><b>Bono 3 desbloqueado</b><span>Clase "Blindaje Mental"</span></div></div>
+    <div class="reveal">
+      <span class="eyebrow">Salomón tuvo esa misma oportunidad</span>
+      <p style="margin-top:0" id="r3txt"></p>
+      <div class="verse">"Sabiduría y ciencia te son dadas; y también te daré riquezas, bienes y gloria."</div>
+      <div class="ref">2 CRÓNICAS 1:12</div>
+      <p>Salomón llegó a ser el rey más próspero de su tiempo y dejó por escrito <b>cómo</b> pensaba sobre el dinero, en Proverbios y Eclesiastés. Son 7 principios. Ahora vamos a ver cuál te falta a ti.</p>
+    </div>
+    <button class="btn gold" data-go="q4">VER CUÁL ME FALTA →</button>
+  </section>
+
+  <!-- 4 -->
+  <section class="screen" data-s="q4">
+    <span class="eyebrow">Pregunta 4 de 5</span>
+    <h2>¿Qué es lo que más te quita la paz hoy?</h2>
+    <div class="opts" data-q="pilar">
+      <button class="opt" data-v="4"><span class="e">⛓️</span>Las deudas y los intereses</button>
+      <button class="opt" data-v="3"><span class="e">🏺</span>No logro ahorrar nada</button>
+      <button class="opt" data-v="1"><span class="e">🌀</span>No sé adónde se va mi dinero</button>
+      <button class="opt" data-v="6"><span class="e">📈</span>Gano poco y no veo cómo crecer</button>
+      <button class="opt" data-v="7"><span class="e">👨‍👩‍👧</span>El miedo por el futuro de mi familia</button>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="screen" data-s="q5">
+    <span class="eyebrow">Pregunta 5 de 5 · última</span>
+    <h2>Si tuvieras un plan claro, ¿dedicarías <span class="gold">10 minutos al día</span> durante 21 días?</h2>
+    <div class="opts" data-q="compromiso">
+      <button class="opt" data-v="si"><span class="e">✅</span>Sí, estoy listo/a para empezar</button>
+      <button class="opt" data-v="sencillo"><span class="e">👍</span>Sí, si es sencillo de seguir</button>
+    </div>
+  </section>
+
+  <!-- E-MAIL (opcional) -->
+  <section class="screen" data-s="email">
+    <div class="crown">🔓</div>
+    <span class="eyebrow">Desbloqueaste tu precio especial</span>
+    <h2>¿A qué correo te enviamos tu diagnóstico?</h2>
+    <p class="lead" style="margin-top:0">Te llega una copia para leerla con calma. Tu precio queda guardado igual.</p>
+    <label for="em" style="position:absolute;left:-9999px">Correo electrónico</label>
+    <input type="email" id="em" placeholder="tu@correo.com" autocomplete="email" inputmode="email">
+    <div class="err" id="err"></div>
+    <button class="btn" id="sendEmail">VER MI DIAGNÓSTICO →</button>
+    <button class="skip" id="skipEmail">Prefiero verlo sin dejar mi correo</button>
+  </section>
+
+  <!-- CARREGANDO -->
+  <section class="screen" data-s="loading">
+    <span class="eyebrow">Analizando tus respuestas</span>
+    <h2>Comparando con los principios de Proverbios…</h2>
+    <div class="load" id="load">
+      <div><b>✓</b>Tu relación con el salario</div>
+      <div><b>✓</b>Tu fe y tus finanzas</div>
+      <div><b>✓</b>Los 7 Pilares de Salomón</div>
+      <div><b>✓</b>Tu pilar bloqueado</div>
+    </div>
+  </section>
+
+  <!-- RESULTADO + OFERTA -->
+  <section class="screen" data-s="result">
+    <div class="card-p">
+      <span class="tag">PILAR BLOQUEADO</span>
+      <h2 id="pTitle"></h2>
+      <p id="pText"></p>
+      <div class="meter">
+        <div class="lbl"><span>Tu nivel de sabiduría financiera</span><span id="scoreTxt"></span></div>
+        <div class="track"><div class="fill" id="fill"></div></div>
+      </div>
+    </div>
+
+    <span class="eyebrow">Tu plan empieza así</span>
+    <ul class="plan" id="plan"></ul>
+
+    <div class="offer">
+      <h3>Lo que desbloqueaste hoy</h3>
+      <div class="it"><span>📖 Los Secretos de Salomón: los 7 Pilares</span><s>US$ 27</s></div>
+      <div class="it"><span>🗓️ Plan de 21 Días, empezando por <b id="oPilar"></b></span><s>US$ 12</s></div>
+      <div class="it"><span>📜 Bono: 30 Versículos de Provisión</span><span class="new">DESBLOQUEADO</span></div>
+      <div class="it"><span>📊 Bono: Planilla "Mayordomo Fiel"</span><span class="new">DESBLOQUEADO</span></div>
+      <div class="it"><span>🧠 Bono: Clase "Blindaje Mental"</span><span class="new">DESBLOQUEADO</span></div>
+      <div class="price">
+        <div class="was">Precio regular: <s id="oRegular"></s></div>
+        <div class="now" id="oPrice"></div>
+        <small>Tu precio desbloqueado · Pago único · Se convierte a tu moneda</small>
+      </div>
+      <a class="btn pulse" id="cta" href="#">QUIERO MI PLAN AHORA →<small>Acceso inmediato a tu correo</small></a>
+      <div class="trust"><span>🔒 Pago seguro Hotmart</span><span>💳 Tarjeta, PayPal o efectivo</span><span>📱 Lee en el celular</span></div>
+    </div>
+
+    <section id="depo" hidden>
+      <span class="eyebrow">Lo que dicen nuestros lectores</span>
+      <div class="testi" id="testiList"></div>
+    </section>
+
+    <div class="guar"><b>7</b><div><strong>Días de garantía.</strong> Si no es para ti, pides el reembolso con un correo y te devolvemos el 100%. La garantía la respalda Hotmart.</div></div>
+    <a class="link" id="more" href="ventas.html">Ver todos los detalles del plan antes de decidir</a>
+  </section>
+</div>
+
+<script>
+(function(S){
+  var FLOW = ['intro','q1','r1','q2','r2','q3','r3','q4','q5','email','loading','result'];
+  var QUESTIONS = ['q1','q2','q3','q4','q5'];
+  var answers = {}, step = 0;
+  var qs = new URLSearchParams(location.search);
+  var DROP = (S.REGULAR.price - S.QUIZ.price) / QUESTIONS.length;   // quanto cada resposta baixa
+
+  // teste A/B do destino do resultado (fica salvo neste aparelho)
+  var variant = S.RESULT_CTA;
+  if (variant === 'ab') {
+    try { variant = localStorage.getItem('salomon_v'); } catch(e){ variant = null; }
+    if (variant !== 'checkout' && variant !== 'ventas') {
+      variant = Math.random() < .5 ? 'checkout' : 'ventas';
+      try { localStorage.setItem('salomon_v', variant); } catch(e){}
+    }
+  }
+
+  var PILLARS = {
+    1:{t:'I. El Pilar de la Sabiduría', s:'la Sabiduría', d:'El dinero entra, pero no sabes adónde se va. Sin un mapa, cualquier ingreso se escapa. Salomón empieza aquí: "El principio de la sabiduría es: adquiere sabiduría" (Proverbios 4:7).',
+       p:['Día 1: el "mapa del dinero" de tu casa en 10 minutos','Días 2–7: los 3 gastos invisibles que más pesan','Días 8–21: tu presupuesto sencillo en el celular']},
+    3:{t:'III. El Pilar del Granero', s:'el Granero', d:'Todo lo que llega se va, y no queda nada para los días difíciles. José guardó en los años buenos y salvó a Egipto en los malos. Tu casa necesita su propio granero.',
+       p:['Día 1: cuánto guardar aunque ganes poco','Días 2–7: tu primer granero de reserva','Días 8–21: el hábito de guardar antes de gastar']},
+    4:{t:'IV. El Pilar de la Libertad', s:'la Libertad', d:'"El que toma prestado es siervo del que presta" (Proverbios 22:7). Las deudas te quitan la paz y se llevan tu salario antes de que llegue. Hay un orden para salir de ellas.',
+       p:['Día 1: la lista honesta de tus deudas','Días 2–7: qué deuda pagar primero (y por qué)','Días 8–21: tu plan para salir del ciclo de intereses']},
+    6:{t:'VI. El Pilar de la Multiplicación', s:'la Multiplicación', d:'Sientes que ganas poco y que no hay cómo crecer. La parábola de los talentos enseña que Dios multiplica lo que se administra con fidelidad, aunque sea poco.',
+       p:['Día 1: los "talentos" que ya tienes y no usas','Días 2–7: cómo hacer rendir lo poco','Días 8–21: tu primer paso para un ingreso extra']},
+    7:{t:'VII. El Pilar del Legado', s:'el Legado', d:'Te preocupa qué pasará con tu familia. "El bueno dejará herederos a los hijos de sus hijos" (Proverbios 13:22). La estabilidad de tu casa se construye con decisiones pequeñas y constantes.',
+       p:['Día 1: la conversación de dinero en familia','Días 2–7: la reserva para imprevistos','Días 8–21: los primeros pasos de tu legado']}
+  };
+  var R3 = {
+    deudas:'Pedir dinero para las deudas es lo más natural. Salomón podía haber pedido oro. <b>No lo hizo.</b>',
+    milagro:'Muchos esperan un milagro de un día. Salomón podía haber pedido uno. <b>No lo hizo.</b>',
+    familia:'Pedir por tu familia muestra un buen corazón. Salomón también pensó en su pueblo, y pidió <b>algo más</b>.',
+    sabiduria:'¡Exactamente lo que pidió Salomón! Y fíjate en lo que Dios le respondió:'
+  };
+
+  var bar = document.getElementById('bar'), fillBar = bar.querySelector('i');
+  var treasure = document.getElementById('treasure'), tVal = document.getElementById('tVal');
+
+  function priceNow(){ return Math.max(S.QUIZ.price, S.REGULAR.price - DROP * step); }
+  function paintTreasure(animate){
+    var p = priceNow();
+    tVal.innerHTML = (step ? '<s>' + S.fmt(S.REGULAR.price) + '</s>' : '') + S.fmt(p);
+    if (animate){ tVal.classList.remove('bump'); void tVal.offsetWidth; tVal.classList.add('bump'); }
+  }
+
+  function show(name){
+    document.querySelectorAll('.screen').forEach(function(s){ s.classList.toggle('on', s.dataset.s === name); });
+    var i = FLOW.indexOf(name), playing = name !== 'intro' && name !== 'result';
+    bar.classList.toggle('hide', !playing);
+    treasure.classList.toggle('hide', name === 'intro');
+    fillBar.style.width = Math.round(i / (FLOW.length - 2) * 100) + '%';
+    var scr = document.querySelector('[data-s="' + name + '"]');
+    if (scr && scr.dataset.gift) document.getElementById('g' + scr.dataset.gift).classList.add('on');
+    window.scrollTo(0,0);
+    if (name !== 'intro') fbq('trackCustom','QuizStep',{step:name});
+    if (name === 'loading') runLoading();
+    if (name === 'result') renderResult();
+  }
+  function next(cur){ show(FLOW[FLOW.indexOf(cur)+1]); }
+
+  document.querySelectorAll('[data-go]').forEach(function(b){
+    b.addEventListener('click', function(){ if (b.dataset.ev) fbq('trackCustom', b.dataset.ev); show(b.dataset.go); });
+  });
+
+  document.querySelectorAll('.opts').forEach(function(group){
+    var scr = group.closest('.screen').dataset.s;
+    group.querySelectorAll('.opt').forEach(function(o){
+      o.addEventListener('click', function(){
+        group.querySelectorAll('.opt').forEach(function(x){ x.classList.remove('sel'); });
+        o.classList.add('sel');
+        if (!(group.dataset.q in answers)) { step = QUESTIONS.indexOf(scr) + 1; paintTreasure(true); }
+        answers[group.dataset.q] = o.dataset.v;
+        if (o.dataset.pts) answers['_pts_'+group.dataset.q] = +o.dataset.pts;
+        if (group.dataset.q === 'pedido') document.getElementById('r3txt').innerHTML = R3[o.dataset.v];
+        setTimeout(function(){ next(scr); }, 420);
+      });
+    });
+  });
+
+  function calcScore(){
+    var s = 10;
+    Object.keys(answers).forEach(function(k){ if (k.indexOf('_pts_') === 0) s += answers[k]; });
+    return Math.max(12, Math.min(s, 64));
+  }
+
+  var em = document.getElementById('em'), err = document.getElementById('err');
+  function finishEmail(email){
+    answers.email = email || '';
+    S.setUnlocked();
+    fbq('trackCustom','Unlock',{value:S.QUIZ.price,currency:'USD'});
+    if (email){
+      fbq('track','Lead');
+      if (S.WEBHOOK_URL){
+        var payload = {email:email, origen:'quiz', fecha:new Date().toLocaleString(), variante:variant,
+          utm_campaign:qs.get('utm_campaign')||'', utm_content:qs.get('utm_content')||''};
+        Object.keys(answers).forEach(function(k){ if (k.indexOf('_pts_') !== 0) payload[k] = answers[k]; });
+        try { fetch(S.WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); } catch(e){}
+      }
+    }
+    show('loading');
+  }
+  document.getElementById('sendEmail').addEventListener('click', function(){
+    var v = em.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){ err.textContent = 'Escribe un correo válido, por ejemplo: maria@gmail.com'; em.focus(); return; }
+    err.textContent = ''; finishEmail(v);
+  });
+  em.addEventListener('keydown', function(e){ if (e.key === 'Enter') document.getElementById('sendEmail').click(); });
+  document.getElementById('skipEmail').addEventListener('click', function(){ finishEmail(''); });
+
+  function runLoading(){
+    var items = document.querySelectorAll('#load div');
+    items.forEach(function(d){ d.classList.remove('ok'); });
+    items.forEach(function(d,i){ setTimeout(function(){ d.classList.add('ok'); }, 550*(i+1)); });
+    setTimeout(function(){ show('result'); }, 550*items.length + 500);
+  }
+
+  function renderResult(){
+    var key = answers.pilar || '1', P = PILLARS[key], score = calcScore();
+    document.getElementById('pTitle').textContent = P.t;
+    document.getElementById('pText').textContent = P.d;
+    document.getElementById('scoreTxt').textContent = score + '/100';
+    setTimeout(function(){ document.getElementById('fill').style.width = score + '%'; }, 100);
+    document.getElementById('plan').innerHTML = P.p.map(function(t){
+      var parts = t.split(': ');
+      return '<li><b>' + parts[0] + ':</b> ' + parts.slice(1).join(': ') + '</li>';
+    }).join('');
+    document.getElementById('oPilar').textContent = P.s;
+    document.getElementById('oRegular').textContent = S.fmt(S.REGULAR.price);
+    document.getElementById('oPrice').textContent = S.fmt(S.QUIZ.price);
+
+    // link da página de vendas (preço desbloqueado, pilar, e-mail, utm, variante)
+    var v = new URL('ventas.html', location.href);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid'].forEach(function(k){ if (qs.get(k)) v.searchParams.set(k, qs.get(k)); });
+    v.searchParams.set('pilar', key);
+    v.searchParams.set('d', '1');
+    v.searchParams.set('v', 'vta');
+    if (answers.email) v.searchParams.set('email', answers.email);
+    var more = document.getElementById('more'), cta = document.getElementById('cta');
+
+    if (variant === 'checkout') {
+      cta.href = S.checkoutUrl({ qs: qs, unlocked: true, email: answers.email, variant: 'chk' });
+      v.searchParams.set('v', 'chk');
+      more.href = v.toString();
+    } else {
+      cta.href = v.toString();
+      more.hidden = true;
+    }
+    S.renderTestimonios(document.getElementById('testiList'), document.getElementById('depo'));
+    fbq('trackCustom','QuizComplete',{pilar:key, score:score, destino:variant});
+    fbq('track','ViewContent',{content_name:'Los Secretos de Salomon',value:S.QUIZ.price,currency:'USD'});
+  }
+
+  paintTreasure(false);
+})(window.SALOMON);
+</script>
+</body>
+</html>
