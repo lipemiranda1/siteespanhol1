@@ -4,7 +4,7 @@
    ===================================================================== */
 window.SALOMON = {
 
-  PIXEL_ID: 'SEU_PIXEL_ID',
+  PIXEL_ID: '1618738956005652',
 
   // Link base do checkout Hotmart (sem cupom, sem off=)
   CHECKOUT: 'https://pay.hotmart.com/S98233760N?checkoutMode=10',
@@ -12,8 +12,10 @@ window.SALOMON = {
   // DUAS ofertas na Hotmart (Produto > Ofertas). Cole o código do "off=" de cada uma.
   // O preço aqui TEM que ser igual ao preço da oferta na Hotmart.
   // Enquanto "offer" estiver vazio, o checkout cobra a oferta padrão do produto.
-  REGULAR: { price: 14.90, offer: '' },   // preço cheio: tráfego direto, remarketing, afiliados
-  QUIZ:    { price: 7.90,  offer: '' },   // preço desbloqueado por quem termina o quiz
+  // QUIZ = preço padrão do produto na Hotmart (US$ 9,97), por isso offer vazio.
+  // REGULAR = crie uma oferta de US$ 19,97 na Hotmart e cole o código dela aqui.
+  REGULAR: { price: 19.97, offer: '' },   // preço cheio: tráfego direto, remarketing, afiliados
+  QUIZ:    { price: 9.97,  offer: '' },   // preço desbloqueado por quem termina o quiz
 
   ANCHOR: 67,                             // soma dos valores da pilha de oferta
 
