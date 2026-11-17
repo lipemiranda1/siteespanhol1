@@ -1,0 +1,12 @@
+# Netlify: páginas antigas -> funil novo (Hotmart). Os parâmetros (utm_*) são mantidos.
+# "!" força o redirecionamento mesmo com o arquivo antigo ainda existindo.
+/                     /quiz.html     301!
+/quizz.html           /quiz.html     301!
+/quizz                /quiz.html     301!
+/kiwifyquizz.html     /quiz.html     301!
+/kiwifyquizz          /quiz.html     301!
+/presell.html         /quiz.html     301!
+/presell              /quiz.html     301!
+/paginadevendas.html  /ventas.html   301!
+/paginadevendas       /ventas.html   301!
+/PAGINADEVENDAS       /ventas.html   301!
